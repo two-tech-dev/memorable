@@ -30,6 +30,7 @@ func TestDefaultConfig(t *testing.T) {
 }
 
 func TestLoadFromFile(t *testing.T) {
+	t.Setenv("MEMORABLE_DSN", "")
 	content := `
 server:
   transport: stdio
@@ -115,8 +116,10 @@ func TestLoadNoFile(t *testing.T) {
 	// When no config file exists, Load() returns defaults
 	orig, _ := os.Getwd()
 	dir := t.TempDir()
-	_ = os.Chdir(dir)
-	defer os.Chdir(orig)
+	if err := os.Chdir(dir); err != nil {
+		t.Fatal(err)
+	}
+	defer func() { _ = os.Chdir(orig) }()
 
 	cfg, err := Load()
 	if err != nil {

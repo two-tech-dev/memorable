@@ -143,10 +143,8 @@ func (c *Consolidator) synthesizeCluster(cluster []*memory.Memory) *Insight {
 	})
 
 	var ids []string
-	var contents []string
 	for _, m := range cluster {
 		ids = append(ids, m.ID)
-		contents = append(contents, m.Content)
 	}
 
 	// Build a summary: take the most recent as the primary, note the count

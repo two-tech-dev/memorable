@@ -321,7 +321,6 @@ func buildWhere(filter *memory.SearchFilter, nextParam int) (string, []any) {
 	if filter.Until != nil {
 		clauses = append(clauses, fmt.Sprintf("created_at <= $%d", nextParam))
 		args = append(args, *filter.Until)
-		nextParam++
 	}
 
 	if len(clauses) == 0 {

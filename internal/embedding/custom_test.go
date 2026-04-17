@@ -21,19 +21,23 @@ func TestCustomProvider_Embed(t *testing.T) {
 		}
 
 		var req customEmbedRequest
-		json.NewDecoder(r.Body).Decode(&req)
+		if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+			t.Fatal(err)
+		}
 		if req.Model != "test-model" {
 			t.Errorf("expected model test-model, got %s", req.Model)
 		}
 
-		json.NewEncoder(w).Encode(customEmbedResponse{
+		if err := json.NewEncoder(w).Encode(customEmbedResponse{
 			Data: []struct {
 				Embedding []float32 `json:"embedding"`
 				Index     int       `json:"index"`
 			}{
 				{Embedding: []float32{0.1, 0.2, 0.3}, Index: 0},
 			},
-		})
+		}); err != nil {
+			t.Fatal(err)
+		}
 	}))
 	defer server.Close()
 
@@ -55,7 +59,7 @@ func TestCustomProvider_Embed(t *testing.T) {
 
 func TestCustomProvider_EmbedBatch(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		json.NewEncoder(w).Encode(customEmbedResponse{
+		if err := json.NewEncoder(w).Encode(customEmbedResponse{
 			Data: []struct {
 				Embedding []float32 `json:"embedding"`
 				Index     int       `json:"index"`
@@ -63,7 +67,9 @@ func TestCustomProvider_EmbedBatch(t *testing.T) {
 				{Embedding: []float32{0.1, 0.2}, Index: 0},
 				{Embedding: []float32{0.3, 0.4}, Index: 1},
 			},
-		})
+		}); err != nil {
+			t.Fatal(err)
+		}
 	}))
 	defer server.Close()
 
@@ -81,7 +87,7 @@ func TestCustomProvider_EmbedBatch(t *testing.T) {
 func TestCustomProvider_ErrorResponse(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusUnauthorized)
-		w.Write([]byte(`{"error":{"message":"Invalid API key"}}`))
+		_, _ = w.Write([]byte(`{"error":{"message":"Invalid API key"}}`))
 	}))
 	defer server.Close()
 

@@ -29,7 +29,9 @@ func TestOllamaEmbed(t *testing.T) {
 			Embeddings: [][]float32{{0.1, 0.2, 0.3}},
 		}
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(resp)
+		if err := json.NewEncoder(w).Encode(resp); err != nil {
+			t.Fatal(err)
+		}
 	}))
 	defer server.Close()
 
@@ -50,7 +52,9 @@ func TestOllamaEmbed(t *testing.T) {
 func TestOllamaEmbedBatch(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		var req ollamaEmbedRequest
-		json.NewDecoder(r.Body).Decode(&req)
+		if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+			t.Fatal(err)
+		}
 
 		resp := ollamaEmbedResponse{
 			Embeddings: make([][]float32, len(req.Input)),
@@ -59,7 +63,9 @@ func TestOllamaEmbedBatch(t *testing.T) {
 			resp.Embeddings[i] = []float32{float32(i) * 0.1, 0.2, 0.3}
 		}
 		w.Header().Set("Content-Type", "application/json")
-		json.NewEncoder(w).Encode(resp)
+		if err := json.NewEncoder(w).Encode(resp); err != nil {
+			t.Fatal(err)
+		}
 	}))
 	defer server.Close()
 
@@ -77,7 +83,7 @@ func TestOllamaEmbedBatch(t *testing.T) {
 func TestOllamaEmbedServerError(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("model not found"))
+		_, _ = w.Write([]byte("model not found"))
 	}))
 	defer server.Close()
 
