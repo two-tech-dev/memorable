@@ -35,13 +35,13 @@ type ScoredResult struct {
 
 // Scorer applies multi-signal ranking to search results.
 type Scorer struct {
-	weights    Weights
+	weights   Weights
 	halfLifeH float64 // recency half-life in hours
 }
 
 func NewScorer(weights Weights) *Scorer {
 	return &Scorer{
-		weights:    weights,
+		weights:   weights,
 		halfLifeH: 168, // 7 days default half-life
 	}
 }

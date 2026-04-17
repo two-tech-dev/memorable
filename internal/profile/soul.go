@@ -18,7 +18,7 @@ type Trait struct {
 // Soul aggregates patterns from memories into a user/agent profile.
 type Soul struct {
 	mu     sync.RWMutex
-	UserID string           `json:"user_id"`
+	UserID string            `json:"user_id"`
 	Traits map[string]*Trait `json:"traits"` // key → Trait
 }
 

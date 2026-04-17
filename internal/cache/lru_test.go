@@ -42,7 +42,7 @@ func TestLRU_LRUOrder(t *testing.T) {
 
 	c.Put("a", 1)
 	c.Put("b", 2)
-	c.Get("a") // access a → a becomes most recent, b becomes LRU
+	c.Get("a")    // access a → a becomes most recent, b becomes LRU
 	c.Put("c", 3) // evicts b (not a)
 
 	if _, ok := c.Get("b"); ok {

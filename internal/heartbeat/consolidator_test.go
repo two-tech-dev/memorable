@@ -96,5 +96,3 @@ func TestSynthesizeClusterEmpty(t *testing.T) {
 		t.Error("expected nil insight for empty cluster")
 	}
 }
-
-

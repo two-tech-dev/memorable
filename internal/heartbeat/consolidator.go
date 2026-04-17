@@ -12,24 +12,24 @@ import (
 
 // Insight represents a derived insight from memory consolidation.
 type Insight struct {
-	Content    string         `json:"content"`
-	SourceIDs  []string       `json:"source_ids"`
-	InsightType string        `json:"insight_type"` // summary | contradiction | pattern
-	Confidence float64        `json:"confidence"`
-	CreatedAt  time.Time      `json:"created_at"`
+	Content     string    `json:"content"`
+	SourceIDs   []string  `json:"source_ids"`
+	InsightType string    `json:"insight_type"` // summary | contradiction | pattern
+	Confidence  float64   `json:"confidence"`
+	CreatedAt   time.Time `json:"created_at"`
 }
 
 // ConsolidationResult holds the output of a heartbeat cycle.
 type ConsolidationResult struct {
-	Insights       []Insight `json:"insights"`
-	MergedCount    int       `json:"merged_count"`
-	ProcessedCount int       `json:"processed_count"`
+	Insights       []Insight     `json:"insights"`
+	MergedCount    int           `json:"merged_count"`
+	ProcessedCount int           `json:"processed_count"`
 	Duration       time.Duration `json:"duration"`
 }
 
 // Consolidator analyzes stored memories and produces insights.
 type Consolidator struct {
-	mgr            *memory.Manager
+	mgr                 *memory.Manager
 	similarityThreshold float64
 }
 

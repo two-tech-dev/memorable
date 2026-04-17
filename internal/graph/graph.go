@@ -8,13 +8,13 @@ import (
 
 // Entity represents a named concept extracted from memories.
 type Entity struct {
-	ID        string    `json:"id"`
-	Name      string    `json:"name"`
-	Type      string    `json:"type"` // person | project | technology | concept | file | decision
-	MemoryIDs []string  `json:"memory_ids"`
+	ID        string         `json:"id"`
+	Name      string         `json:"name"`
+	Type      string         `json:"type"` // person | project | technology | concept | file | decision
+	MemoryIDs []string       `json:"memory_ids"`
 	Metadata  map[string]any `json:"metadata,omitempty"`
-	CreatedAt time.Time `json:"created_at"`
-	UpdatedAt time.Time `json:"updated_at"`
+	CreatedAt time.Time      `json:"created_at"`
+	UpdatedAt time.Time      `json:"updated_at"`
 }
 
 // Relation represents a directed edge between two entities.

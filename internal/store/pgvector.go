@@ -15,9 +15,9 @@ import (
 )
 
 type PgvectorStore struct {
-	pool      *pgxpool.Pool
-	table     string
-	dims      int
+	pool  *pgxpool.Pool
+	table string
+	dims  int
 }
 
 func NewPgvector(ctx context.Context, dsn, table string, dims int) (*PgvectorStore, error) {

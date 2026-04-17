@@ -57,11 +57,11 @@ type SearchFilter struct {
 }
 
 type Stats struct {
-	Total       int            `json:"total"`
-	ByType      map[string]int `json:"by_type"`
-	ByUser      map[string]int `json:"by_user,omitempty"`
-	OldestAt    *time.Time     `json:"oldest_at,omitempty"`
-	NewestAt    *time.Time     `json:"newest_at,omitempty"`
+	Total    int            `json:"total"`
+	ByType   map[string]int `json:"by_type"`
+	ByUser   map[string]int `json:"by_user,omitempty"`
+	OldestAt *time.Time     `json:"oldest_at,omitempty"`
+	NewestAt *time.Time     `json:"newest_at,omitempty"`
 }
 
 func ContentHash(content string) string {

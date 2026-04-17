@@ -31,11 +31,11 @@ type PgvectorConfig struct {
 }
 
 type EmbeddingConfig struct {
-	Provider string             `yaml:"provider"` // openai | gemini | ollama | custom
-	OpenAI   OpenAIEmbedConfig  `yaml:"openai"`
-	Gemini   GeminiEmbedConfig  `yaml:"gemini"`
-	Ollama   OllamaEmbedConfig  `yaml:"ollama"`
-	Custom   CustomEmbedConfig  `yaml:"custom"`
+	Provider string            `yaml:"provider"` // openai | gemini | ollama | custom
+	OpenAI   OpenAIEmbedConfig `yaml:"openai"`
+	Gemini   GeminiEmbedConfig `yaml:"gemini"`
+	Ollama   OllamaEmbedConfig `yaml:"ollama"`
+	Custom   CustomEmbedConfig `yaml:"custom"`
 }
 
 type OpenAIEmbedConfig struct {
@@ -58,8 +58,8 @@ type OllamaEmbedConfig struct {
 type CustomEmbedConfig struct {
 	BaseURL string            `yaml:"base_url"` // Required. e.g. https://openrouter.ai/api/v1
 	APIKey  string            `yaml:"api_key"`
-	Model   string            `yaml:"model"`    // Required. e.g. openai/text-embedding-3-small
-	Dims    int               `yaml:"dims"`     // Required. Must match model output dimensions
+	Model   string            `yaml:"model"`   // Required. e.g. openai/text-embedding-3-small
+	Dims    int               `yaml:"dims"`    // Required. Must match model output dimensions
 	Headers map[string]string `yaml:"headers"` // Optional extra HTTP headers
 }
 
