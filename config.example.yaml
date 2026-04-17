@@ -1,0 +1,40 @@
+# Memorable Configuration
+# Copy to ~/.memorable/config.yaml or ./memorable.yaml
+
+server:
+  transport: stdio # stdio | http (future)
+
+storage:
+  backend: pgvector # pgvector | sqlite (future)
+  pgvector:
+    dsn: "postgres://localhost:5432/memorable?sslmode=disable"
+    table_name: memories
+    vector_dimensions: 1536
+
+embedding:
+  # Supported providers: openai, gemini, ollama, custom
+  provider: openai
+
+  openai:
+    api_key: ${OPENAI_API_KEY} # or set OPENAI_API_KEY env var
+    model: text-embedding-3-small # text-embedding-3-small | text-embedding-3-large | text-embedding-ada-002
+    # base_url: https://api.openai.com/v1 # Custom base URL for OpenAI-compatible APIs (Voyage, Together, Azure, etc.)
+
+  gemini:
+    api_key: ${GEMINI_API_KEY} # or set GEMINI_API_KEY env var
+    model: text-embedding-004 # text-embedding-004 | embedding-001
+
+  ollama:
+    base_url: http://localhost:11434
+    model: nomic-embed-text # nomic-embed-text | mxbai-embed-large | all-minilm
+    dims: 768
+
+  # Generic OpenAI-compatible provider (OpenRouter, Together, Voyage, Mistral, Cohere, etc.)
+  custom:
+    base_url: https://openrouter.ai/api/v1 # Required
+    api_key: ${CUSTOM_API_KEY} # or set CUSTOM_API_KEY env var
+    model: openai/text-embedding-3-small # Required — model identifier for the provider
+    dims: 1536 # Required — must match model output dimensions
+    headers: # Optional extra HTTP headers
+      X-Title: Memorable
+      # HTTP-Referer: https://github.com/two-tech-dev/memorable

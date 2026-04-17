@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6366f1" />
+      <stop offset="100%" style="stop-color:#8b5cf6" />
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="24" fill="url(#bg)" />
+  <!-- Brain icon -->
+  <g transform="translate(60,58)" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left hemisphere -->
+    <path d="M-4,-24 C-18,-24 -28,-14 -28,0 C-28,8 -24,14 -18,18 C-18,22 -14,26 -8,26 C-4,26 -2,24 -2,22" />
+    <path d="M-28,0 C-32,0 -34,4 -34,8 C-34,12 -32,16 -28,16" />
+    <path d="M-18,18 C-22,18 -26,16 -28,12" />
+    <!-- Right hemisphere -->
+    <path d="M4,-24 C18,-24 28,-14 28,0 C28,8 24,14 18,18 C18,22 14,26 8,26 C4,26 2,24 2,22" />
+    <path d="M28,0 C32,0 34,4 34,8 C34,12 32,16 28,16" />
+    <path d="M18,18 C22,18 26,16 28,12" />
+    <!-- Center line -->
+    <line x1="0" y1="-24" x2="0" y2="26" />
+    <!-- Neural connections -->
+    <circle cx="-10" cy="-8" r="2" fill="#fff" stroke="none" />
+    <circle cx="10" cy="-8" r="2" fill="#fff" stroke="none" />
+    <circle cx="-8" cy="8" r="2" fill="#fff" stroke="none" />
+    <circle cx="8" cy="8" r="2" fill="#fff" stroke="none" />
+    <line x1="-10" y1="-8" x2="10" y2="-8" stroke-dasharray="2,2" stroke-width="1.5" />
+    <line x1="-8" y1="8" x2="8" y2="8" stroke-dasharray="2,2" stroke-width="1.5" />
+    <line x1="-10" y1="-8" x2="8" y2="8" stroke-dasharray="2,2" stroke-width="1.5" />
+    <line x1="10" y1="-8" x2="-8" y2="8" stroke-dasharray="2,2" stroke-width="1.5" />
+  </g>
+</svg>
