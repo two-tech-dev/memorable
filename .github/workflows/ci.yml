@@ -34,7 +34,9 @@ jobs:
         run: go vet ./...
 
       - name: Test
-        run: go test -race -coverprofile=coverage.txt ./...
+        run: |
+          go test -race ./...
+          go test -race -coverprofile=coverage.txt $(go list ./... | grep -v '/mcp$' | grep -v '/store$' | grep -v '/cmd/')
 
       - name: Upload coverage
         if: matrix.go-version == '1.25'

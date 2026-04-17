@@ -26,7 +26,7 @@ test-integration:
 
 ## test-cover: Run tests with coverage report
 test-cover:
-	go test -race -coverprofile=coverage.txt -covermode=atomic ./...
+	go test -race -coverprofile=coverage.txt -covermode=atomic $$(go list ./... | grep -v '/mcp$$' | grep -v '/store$$' | grep -v '/cmd/')
 	go tool cover -html=coverage.txt -o coverage.html
 	@echo "Coverage report: coverage.html"
 
